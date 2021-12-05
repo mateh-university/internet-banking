@@ -25,15 +25,13 @@ namespace Usuario.Controllers
 
 
             if (user != null)
-            {
-                
+            { 
                 ViewBag.Message =  "";
-                return View("Registro");
+                return RedirectToAction("Index", user.Tipo == "admin" ? "Admin" : "Cliente");
             }
 
             else
             {
-
                 ViewBag.Message = "Datos Incorrectos";
                 return View();
             }

@@ -18,5 +18,6 @@ namespace Entidades
         public string Correo { get; set; }
         public string Passw { get; set; }
         public Nullable<int> ID_user { get; set; }
+        public string Tipo { get; set; }
     }
 }
