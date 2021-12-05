@@ -26,13 +26,15 @@ namespace Usuario.Controllers
 
             if (user != null)
             {
+                
+                ViewBag.Message =  "";
                 return View("Registro");
             }
 
             else
             {
 
-                ViewBag.Mensaje = "Datos Incorrectos";
+                ViewBag.Message = "Datos Incorrectos";
                 return View();
             }
         }
@@ -44,12 +46,31 @@ namespace Usuario.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Registro(string nombre, string correo, string clave, string clave2)
+        {
+            var g = cli.Crear_cliente(nombre, correo, clave, clave2);
+
+            if(g == "Agregado")
+            {
+                ViewBag.Message = "Tu cuenta ha sido creada con exito";
+                return View("login");
+            }
+            else
+            {
+                ViewBag.Message = g;
+                return View();
+            }
+
+        }
+
         public ActionResult Registro()
         {
             ViewBag.Message = "Your contact page.";
 
             return View();
         }
+
 
         public ActionResult InsertCuenta()
         {

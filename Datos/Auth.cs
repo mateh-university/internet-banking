@@ -9,11 +9,42 @@ namespace Datos
 {
     public class Auth
     {
-
+        DBProEntities6 db = new DBProEntities6();
         public Inicio_Result IniciarSesion(String correo, String clave)
         {
-            DBProEntities6 db = new DBProEntities6();
+            
             return db.Inicio(correo, clave).FirstOrDefault();
         }
+
+        
+        public Cliente Crear_cliente(Cliente cliente)
+        {
+            
+            var existe = db.Usuario.FirstOrDefault(a => a.Correo == cliente.Correo);
+
+            if(existe == null)
+            {
+                Usuario _usuario = new Usuario();
+                _usuario.Nombre = cliente.Nombre;
+                _usuario.Correo = cliente.Correo;
+                _usuario.Passw = cliente.Passw;
+                _usuario.Tipo = "cliente";
+
+
+
+
+                var x = db.Usuario.Add(_usuario);
+                cliente.ID_user = x.ID;
+                var Cliente_agregado = db.Cliente.Add(cliente);
+                db.SaveChanges();
+                return Cliente_agregado;
+            }
+
+            return null;
+            
+        }
+
+        
+
     }
 }
