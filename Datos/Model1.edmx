@@ -639,6 +639,7 @@
           <Property Type="String" Name="Correo" Nullable="true" MaxLength="255" />
           <Property Type="String" Name="Passw" Nullable="true" MaxLength="255" />
           <Property Type="Int32" Name="ID_user" Nullable="true" />
+          <Property Type="String" Name="Tipo" Nullable="true" MaxLength="10" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -793,6 +794,7 @@
                 <ScalarProperty Name="Correo" ColumnName="Correo" />
                 <ScalarProperty Name="Passw" ColumnName="Passw" />
                 <ScalarProperty Name="ID_user" ColumnName="ID_user" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
