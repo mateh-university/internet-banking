@@ -89,6 +89,7 @@
           <Property Name="ID_Tarjeta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ID_propietario" Type="int" />
           <Property Name="Tarjeta_monto" Type="int" />
+          <Property Name="Fecha_limiteapagar" Type="datetime" />
         </EntityType>
         <Function Name="AvanceTarjeta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Usuario" Type="int" Mode="In" />
@@ -104,10 +105,6 @@
         <Function Name="ConsultaTarjeta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Usuario" Type="varchar" Mode="In" />
         </Function>
-        <Function Name="DepositoCahorros" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="UsuarioT" Type="varchar" Mode="In" />
-          <Parameter Name="Cantidad" Type="int" Mode="In" />
-        </Function>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="PagoPrestamo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Usuario" Type="int" Mode="In" />
@@ -115,6 +112,10 @@
         </Function>
         <Function Name="PagoTarjeta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Usuario" Type="int" Mode="In" />
+          <Parameter Name="Cantidad" Type="int" Mode="In" />
+        </Function>
+        <Function Name="RetiroCahorros" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UsuarioT" Type="int" Mode="In" />
           <Parameter Name="Cantidad" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -247,8 +248,9 @@
           <Property Name="ID_Tarjeta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ID_propietario" Type="Int32" />
           <Property Name="Tarjeta_monto" Type="Int32" />
+          <Property Name="Fecha_limiteapagar" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityContainer Name="DBProEntities5" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DBProEntities6" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="administrador" EntityType="Self.administrador" />
           <EntitySet Name="Cliente" EntityType="Self.Cliente" />
           <EntitySet Name="Cuenta_Ahorros" EntityType="Self.Cuenta_Ahorros" />
@@ -272,16 +274,16 @@
           <FunctionImport Name="ConsultaTarjeta" ReturnType="Collection(Int32)">
             <Parameter Name="Usuario" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="DepositoCahorros">
-            <Parameter Name="UsuarioT" Mode="In" Type="String" />
-            <Parameter Name="Cantidad" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="PagoPrestamo">
             <Parameter Name="Usuario" Mode="In" Type="Int32" />
             <Parameter Name="Cuota" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="PagoTarjeta">
             <Parameter Name="Usuario" Mode="In" Type="Int32" />
+            <Parameter Name="Cantidad" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="RetiroCahorros">
+            <Parameter Name="UsuarioT" Mode="In" Type="Int32" />
             <Parameter Name="Cantidad" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_alterdiagram">
@@ -331,7 +333,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DBProModelStoreContainer" CdmEntityContainer="DBProEntities5">
+        <EntityContainerMapping StorageEntityContainer="DBProModelStoreContainer" CdmEntityContainer="DBProEntities6">
           <EntitySetMapping Name="administrador">
             <EntityTypeMapping TypeName="DBProModel.administrador">
               <MappingFragment StoreEntitySet="administrador">
@@ -423,6 +425,7 @@
                 <ScalarProperty Name="ID_Tarjeta" ColumnName="ID_Tarjeta" />
                 <ScalarProperty Name="ID_propietario" ColumnName="ID_propietario" />
                 <ScalarProperty Name="Tarjeta_monto" ColumnName="Tarjeta_monto" />
+                <ScalarProperty Name="Fecha_limiteapagar" ColumnName="Fecha_limiteapagar" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -430,9 +433,9 @@
           <FunctionImportMapping FunctionImportName="ConsultaCahorros" FunctionName="DBProModel.Store.ConsultaCahorros" />
           <FunctionImportMapping FunctionImportName="ConsultaPrestamo" FunctionName="DBProModel.Store.ConsultaPrestamo" />
           <FunctionImportMapping FunctionImportName="ConsultaTarjeta" FunctionName="DBProModel.Store.ConsultaTarjeta" />
-          <FunctionImportMapping FunctionImportName="DepositoCahorros" FunctionName="DBProModel.Store.DepositoCahorros" />
           <FunctionImportMapping FunctionImportName="PagoPrestamo" FunctionName="DBProModel.Store.PagoPrestamo" />
           <FunctionImportMapping FunctionImportName="PagoTarjeta" FunctionName="DBProModel.Store.PagoTarjeta" />
+          <FunctionImportMapping FunctionImportName="RetiroCahorros" FunctionName="DBProModel.Store.RetiroCahorros" />
           <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="DBProModel.Store.sp_alterdiagram" />
           <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="DBProModel.Store.sp_creatediagram" />
           <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="DBProModel.Store.sp_dropdiagram" />

@@ -16,10 +16,10 @@ namespace Datos
     using System.Linq;
     using Entidades;
     
-    public partial class DBProEntities5 : DbContext
+    public partial class DBProEntities6 : DbContext
     {
-        public DBProEntities5()
-            : base("name=DBProEntities5")
+        public DBProEntities6()
+            : base("name=DBProEntities6")
         {
         }
     
@@ -82,19 +82,6 @@ namespace Datos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("ConsultaTarjeta", usuarioParameter);
         }
     
-        public virtual int DepositoCahorros(string usuarioT, Nullable<int> cantidad)
-        {
-            var usuarioTParameter = usuarioT != null ?
-                new ObjectParameter("UsuarioT", usuarioT) :
-                new ObjectParameter("UsuarioT", typeof(string));
-    
-            var cantidadParameter = cantidad.HasValue ?
-                new ObjectParameter("Cantidad", cantidad) :
-                new ObjectParameter("Cantidad", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DepositoCahorros", usuarioTParameter, cantidadParameter);
-        }
-    
         public virtual int PagoPrestamo(Nullable<int> usuario, Nullable<int> cuota)
         {
             var usuarioParameter = usuario.HasValue ?
@@ -119,6 +106,19 @@ namespace Datos
                 new ObjectParameter("Cantidad", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PagoTarjeta", usuarioParameter, cantidadParameter);
+        }
+    
+        public virtual int RetiroCahorros(Nullable<int> usuarioT, Nullable<int> cantidad)
+        {
+            var usuarioTParameter = usuarioT.HasValue ?
+                new ObjectParameter("UsuarioT", usuarioT) :
+                new ObjectParameter("UsuarioT", typeof(int));
+    
+            var cantidadParameter = cantidad.HasValue ?
+                new ObjectParameter("Cantidad", cantidad) :
+                new ObjectParameter("Cantidad", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RetiroCahorros", usuarioTParameter, cantidadParameter);
         }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)

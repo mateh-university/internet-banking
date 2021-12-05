@@ -17,5 +17,6 @@ namespace Entidades
         public int ID_Tarjeta { get; set; }
         public Nullable<int> ID_propietario { get; set; }
         public Nullable<int> Tarjeta_monto { get; set; }
+        public Nullable<System.DateTime> Fecha_limiteapagar { get; set; }
     }
 }
