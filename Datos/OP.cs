@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Entidades;
 using System.Data.SqlClient;
+using Entidades;
 
 
 namespace Datos
 {
     public class OP
     {
-        DBProEntities5 db = new DBProEntities5();
+        DBProEntities6 db = new DBProEntities6();
 
         public void Solicitar_Cahorros (Cuenta_Ahorros cuenta)
         {
@@ -38,7 +38,7 @@ namespace Datos
             string sql = @"select ID, Nombre, Correo, Passw
                  from Usuario       
                 where ID = @ID";
-            using (var dbq = new DBProEntities5())
+            using (var dbq = new DBProEntities6())
             {
            
                 return dbq.Database.SqlQuery<Cliente>(sql,

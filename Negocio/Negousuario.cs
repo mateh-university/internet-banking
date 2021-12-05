@@ -10,11 +10,12 @@ namespace Negocio
 {
     public class Negousuario
     {
-        Negousuario _usuario = new Negousuario();
+       
 
-        public Negousuario validar(string correo, string clave)
+        public Inicio_Result validar(string correo, string clave)
         {
-            return _usuario.validar(correo, clave);
+            var auth = new Auth();
+            return auth.IniciarSesion(correo, clave);
         }
     }
 }

@@ -14,6 +14,15 @@
         <EntityTypeShape EntityType="DBProModel.Registro_Tarjeta" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBProModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBProModel.Tarjeta_credito" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBProModel.Usuario" Width="1.5" PointX="0.75" PointY="1" />
+        <AssociationConnector Association="DBProModel.FK_administrador_Usuario" />
+        <AssociationConnector Association="DBProModel.FK_Cliente_Usuario" />
+        <AssociationConnector Association="DBProModel.FK_Cuenta_Ahorros_Cliente" />
+        <AssociationConnector Association="DBProModel.FK_Prestamo_Cliente" />
+        <AssociationConnector Association="DBProModel.FK_Tarjeta_credito_Cliente" />
+        <AssociationConnector Association="DBProModel.FK_Cuenta_Ahorros_Registro_Cahorros" />
+        <AssociationConnector Association="DBProModel.FK_Registro_Prestamo_Prestamo" />
+        <AssociationConnector Association="DBProModel.FK_Tarjeta_credito_Registro_Tarjeta" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

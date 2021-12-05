@@ -12,28 +12,24 @@ namespace Entidades
     using System;
     using System.Collections.Generic;
     
-    public partial class Cliente
+    public partial class Usuario
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Cliente()
+        public Usuario()
         {
-            this.Cuenta_Ahorros = new HashSet<Cuenta_Ahorros>();
-            this.Prestamo = new HashSet<Prestamo>();
-            this.Tarjeta_credito = new HashSet<Tarjeta_credito>();
+            this.administrador = new HashSet<administrador>();
+            this.Cliente = new HashSet<Cliente>();
         }
     
         public int ID { get; set; }
         public string Nombre { get; set; }
         public string Correo { get; set; }
         public string Passw { get; set; }
-        public Nullable<int> ID_user { get; set; }
+        public string Tipo { get; set; }
     
-        public virtual Usuario Usuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Cuenta_Ahorros> Cuenta_Ahorros { get; set; }
+        public virtual ICollection<administrador> administrador { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Prestamo> Prestamo { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tarjeta_credito> Tarjeta_credito { get; set; }
+        public virtual ICollection<Cliente> Cliente { get; set; }
     }
 }
