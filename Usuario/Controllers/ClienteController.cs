@@ -27,7 +27,6 @@ namespace Usuario.Controllers
         [HttpPost]
         public ActionResult Cahorros(string id ,int monto)
         {
-       //     var user = cli.Cliente_cuenta(, monto);
 
             return View();
         }

@@ -75,6 +75,11 @@ namespace Datos
             return db.Prestamo.ToList();
         }
 
+        public int Consultar_Balance(Cliente cliente)
+        {
+            return db.ConsultaCahorros(cliente);
+        }
+
 
     }
 }
