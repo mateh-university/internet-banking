@@ -29,12 +29,12 @@ namespace Usuario.Controllers
             if (g == "Agregado")
             {
                 ViewBag.Message = "El cliente ha sido creada con exito";
-                return View();
+                return RedirectToAction("Clientes");
             }
             else
             {
                 ViewBag.Message = g;
-                return View();
+                return RedirectToAction("Clientes");
             }
         }
         [HttpPut]
@@ -70,6 +70,40 @@ namespace Usuario.Controllers
                return View();
             //}
         }
+
+        public ActionResult Cuentas()
+        {
+            var lista = negocio.ListCuentas();
+            return View(lista);
+        }
+
+
+        public ActionResult Tarjetas()
+        {
+            var lista = negocio.ListTarjetas();
+            return View(lista);
+        }
+
+        public ActionResult Prestamos()
+        {
+            var lista = negocio.ListPrestamos();
+            return View(lista);
+        }
+        //[HttpPost]
+        //public ActionResult Cuentas(string nombre, string correo, string clave, string clave2)
+        //{
+        //    var g = negocio.Crear_cliente(nombre, correo, clave, clave2);
+
+        //    if (g == "Agregado")
+        //    {
+        //        ViewBag.Message = "El cliente ha sido creada con exito";
+        //        return RedirectToAction("Clientes");
+        //    }
+        //    else
+        //    {
+        //        ViewBag.Message = g;
+        //        return RedirectToAction("Clientes");
+        //    }
+    }
     }
 
-}

@@ -1,0 +1,180 @@
+﻿@model List<Entidades.Prestamo>
+    @{
+        ViewBag.Title = "Prestamos";
+        Layout = "~/Views/Shared/Master.cshtml";
+    }
+
+    <h2>Tabla Prestamos</h2>
+
+
+
+
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <p class="mb-4">
+            @ViewBag.Message
+        </p>
+
+        <!-- Modal Agregar y Editar -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Nuevo Cliente</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form class="user" method="post">
+                        <div class="modal-body">
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <input id="ID_Propietario" name="ID_Propietario" type="number" class="form-control form-control-user" id="exampleFirstName"
+                                           placeholder="ID Del propietario">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input id="Cuenta_monto" name="Cuenta_monto" type="number" class="form-control form-control-user" id="exampleInputEmail"
+                                       placeholder="Monto de la cuenta">
+                            </div>
+                            <div class="form-group">
+                                <input id="Fecha_limiteapagar" name="Fecha_limiteapagar" type="datetime" class="form-control form-control-user"
+                                       placeholder="Fecha limite a pagar">
+                            </div>
+                            <div class="form-group">
+                                <input id="Cuotas" name="Cuotas" type="number" class="form-control form-control-user" id="exampleInputEmail"
+                                       placeholder="Cuotas mensuales">
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Delete Modal-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-primary" href="login.html">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Clientes</h6>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                    Agregar Nueva Cuenta
+                </button>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Propietario ID</th>
+                                <th>Monto Inicial</th>
+                                <th>Monto Actual</th>
+                                <th>Fecha limite a pagar</th>
+                                <th>Cuotas</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Propietario ID</th>
+                                <th>Monto Inicial</th>
+                                <th>Monto Actual</th>
+                                <th>Fecha limite a pagar</th>
+                                <th>Cuotas</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach (var customer in Model)
+                            {
+                            <tr>
+                                <td>@customer.ID_propietario</td>
+                                <td>@customer.Monto_inicial</td>
+                                <td>@customer.Monto_Prestado</td>
+                                <td>@customer.Fecha_limiteapagar</td>
+                                <td>@customer.Cuotas</td>
+
+                                <td>
+                                    <button id="edit-" +@customer.ID data-id=@customer.ID_propietario data-Cuenta_Prestado=@customer.Monto_Prestado data-Monto_inicial=@customer.Monto_inicial data-Fecha_limiteapagar=@customer.Fecha_limiteapagar data-Cuotas=@customer.Cuotas class="edit-button btn btn-circle btn-success">
+                                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                                    </button>
+
+                                    <button id="delete-" +@customer.ID data-id=@customer.ID_propietario data-Cuenta_monto=@customer.Monto_Prestado class="delete-button  btn btn-circle btn-danger">
+                                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                                    </button>
+                                </td>
+
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script>
+    //Editar
+    var selected = null;
+    document.querySelectorAll('.edit-button').forEach(x => {
+        x.addEventListener('click', () => {
+            const data = $(`#${x.id}`).data();
+            selected = data;
+            console.log(selected)
+            $('#exampleModalCenter').on('show.bs.modal', function (event) {
+                console.log('showing')
+                if (selected) {
+                    $('#nombre').val(selected.nombre);
+                    $('#correo').val(selected.correo);
+                    $('#clave').val(selected.passw);
+                }
+            })
+
+            $('#exampleModalCenter').modal({})
+
+        })
+    })
+    //Eliminar
+    document.querySelectorAll('.delete-button').forEach(x => {
+        x.addEventListener('click', () => {
+            $("#logoutModal").modal({})
+            return console.log('deleting')
+
+            const data = $(`#${x.id}`).data();
+
+            fetch(`/Admin/Clientes/${data.id}`, { method: 'DELETE' })
+                .then(res => res.json())
+                .then(res => {
+                    alert('Proceso Exitoso')
+                    alert(err);
+                    console.log(res)
+                })
+                .catch(err => console.log(err))
+
+        })
+    })
+
+
+    </script>

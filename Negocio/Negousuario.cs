@@ -58,5 +58,18 @@ namespace Negocio
             return auth.MostrarCliente();
         }
 
+        public List<Cuenta_Ahorros> ListCuentas()
+        {
+            return auth.MostrarCuentas();
+        }
+        public List<Tarjeta_credito> ListTarjetas()
+        {
+            return auth.MostrarTarjetas();
+        }
+        public List<Prestamo> ListPrestamos()
+        {
+            return auth.MostrarPrestamos();
+        }
+
     }
 }

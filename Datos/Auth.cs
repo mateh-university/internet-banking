@@ -60,5 +60,21 @@ namespace Datos
             return db.Cliente.ToList();
         }
 
+        public List<Cuenta_Ahorros> MostrarCuentas()
+        {
+            return db.Cuenta_Ahorros.ToList();
+        }
+
+        public List<Tarjeta_credito> MostrarTarjetas()
+        {
+            return db.Tarjeta_credito.ToList();
+        }
+
+        public List<Prestamo> MostrarPrestamos()
+        {
+            return db.Prestamo.ToList();
+        }
+
+
     }
 }

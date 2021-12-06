@@ -1,10 +1,10 @@
-﻿@model List<Entidades.Cliente>
+﻿@model List<Entidades.Cuenta_Ahorros>
 @{
-    ViewBag.Title = "Clientes";
+    ViewBag.Title = "Cuentas";
     Layout = "~/Views/Shared/Master.cshtml";
 }
 
-<h2>Tabla Clientes</h2>
+<h2>Tabla Cuentas</h2>
 
 
 
@@ -30,24 +30,15 @@
                     <div class="modal-body">
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                <input id="nombre" name="nombre" type="text" class="form-control form-control-user" id="exampleFirstName"
-                                       placeholder="Nombre Completo">
+                                <input id="ID_Propietario" name="ID_Propietario" type="number" class="form-control form-control-user" id="exampleFirstName"
+                                       placeholder="ID Del propietario">
                             </div>
                         </div>
                         <div class="form-group">
-                            <input id="correo" name="correo" type="email" class="form-control form-control-user" id="exampleInputEmail"
-                                   placeholder="Correo">
+                            <input id="Cuenta_monto" name="Cuenta_monto" type="number" class="form-control form-control-user" id="exampleInputEmail"
+                                   placeholder="Monto de la cuenta">
                         </div>
-                        <div class="form-group row">
-                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                <input id="clave" name="clave" type="password" class="form-control form-control-user"
-                                       placeholder="Contraseña">
-                            </div>
-                            <div class="col-sm-6">
-                                <input name="clave2" type="password" class="form-control form-control-user"
-                                       id="exampleRepeatPassword" placeholder="Repita la Contraseña">
-                            </div>
-                        </div>
+                       
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -83,7 +74,7 @@
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Clientes</h6>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                Agregar Nuevo Cliente
+                Agregar Nueva Cuenta
             </button>
         </div>
         <div class="card-body">
@@ -91,33 +82,28 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Nombre</th>
-                            <th>Correo</th>
-                            <th>Contraseña</th>
-                            <th>Acciones</th>
+                            <th>Propietario ID</th>
+                            <th>Monto</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
-                            <th>Nombre</th>
-                            <th>Correo</th>
-                            <th>Contraseña</th>
-                            <th>Acciones</th>
+                            <th>Propietario ID</th>
+                            <th>Monto</th>
                         </tr>
                     </tfoot>
                     <tbody>
                         @foreach (var customer in Model)
                         {
                             <tr>
-                                <td>@customer.Nombre</td>
-                                <td>@customer.Correo</td>
-                                <td>@customer.Passw</td>
+                                <td>@customer.ID_propietario</td>
+                                <td>@customer.Cuenta_monto</td>
                                 <td>
-                                    <button id="edit-" +@customer.ID data-Nombre=@customer.Nombre data-Correo=@customer.Correo data-Passw=@customer.Passw class="edit-button btn btn-circle btn-success">
+                                    <button id="edit-" +@customer.ID data-id=@customer.ID_propietario data-Cuenta_monto=@customer.Cuenta_monto class="edit-button btn btn-circle btn-success">
                                         <i class="fas fa-fw fa-tachometer-alt"></i>
                                     </button>
 
-                                    <button id="delete-" +@customer.ID data-id="@customer.ID" class="delete-button  btn btn-circle btn-danger">
+                                    <button id="delete-" +@customer.ID data-id=@customer.ID_propietario data-Cuenta_monto=@customer.Cuenta_monto class="delete-button  btn btn-circle btn-danger">
                                         <i class="fas fa-fw fa-tachometer-alt"></i>
                                     </button>
                                 </td>
@@ -132,7 +118,7 @@
 
 </div>
 <script>
-    //Editar 
+    //Editar
     var selected = null;
     document.querySelectorAll('.edit-button').forEach(x => {
         x.addEventListener('click', () => {
@@ -150,7 +136,7 @@
 
             $('#exampleModalCenter').modal({})
 
-         })
+        })
     })
     //Eliminar
     document.querySelectorAll('.delete-button').forEach(x => {
@@ -172,6 +158,5 @@
         })
     })
 
-    
-</script>
 
+</script>
