@@ -55,7 +55,10 @@ namespace Datos
  
         }
 
-
+        public List<Cliente> MostrarCliente()
+        {
+            return db.Cliente.ToList();
+        }
 
     }
 }

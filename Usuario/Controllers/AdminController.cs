@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using Negocio;
 namespace Usuario.Controllers
 {
     public class AdminController : Controller
     {
         // GET: Admin
+        Negousuario negocio = new Negousuario();
         public ActionResult Index()
         {
             return View();
@@ -16,7 +17,15 @@ namespace Usuario.Controllers
 
         public ActionResult Clientes()
         {
-            return View();
+            var lista = negocio.ListClientes();
+            return View(lista);
         }
+
+        //[HttpPost]
+        //public ActionResult Clientes()
+        //{
+
+        //    return View();
+        //}
     }
 }

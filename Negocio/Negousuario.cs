@@ -12,7 +12,7 @@ namespace Negocio
     {
 
         Auth auth = new Auth();
-
+        OP obj = new OP();
 
         public Inicio_Result validar(string correo, string clave)
         {
@@ -52,5 +52,11 @@ namespace Negocio
 
             auth.Cahorros(cliente);
         }
+
+        public List<Cliente> ListClientes()
+        {
+            return auth.MostrarCliente();
+        }
+
     }
 }

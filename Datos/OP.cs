@@ -27,10 +27,7 @@ namespace Datos
 
         }
 
-        public List<Cliente> MostrarUsuario()
-        {
-            return db.Cliente.ToList();
-        }
+       
 
         public Cliente ObtenerUsuario(int id)
         {
