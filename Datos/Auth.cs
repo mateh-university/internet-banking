@@ -30,9 +30,6 @@ namespace Datos
                 _usuario.Passw = cliente.Passw;
                 _usuario.Tipo = "cliente";
 
-
-
-
                 var x = db.Usuario.Add(_usuario);
                 cliente.ID_user = x.ID;
                 var Cliente_agregado = db.Cliente.Add(cliente);
@@ -43,8 +40,22 @@ namespace Datos
             return null;
             
         }
+        public Cuenta_Ahorros Cahorros(Cliente cliente)
+        {
+            Cuenta_Ahorros ahorros = new Cuenta_Ahorros();
 
-        
+            ahorros.ID_propietario = cliente.ID;
+            
+
+            var x = db.Cuenta_Ahorros.Add(ahorros);
+            db.SaveChanges();
+
+            return ahorros;
+
+ 
+        }
+
+
 
     }
 }

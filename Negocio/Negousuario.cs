@@ -39,6 +39,18 @@ namespace Negocio
                 return "La segunda clave no coincide con la primera"; 
             }
 
-        } 
+        }
+
+        public void Cliente_cuenta(Cliente cliente ,string id_prop, int monto)
+        {
+
+            Cuenta_Ahorros ahorros = new Cuenta_Ahorros();
+
+            ahorros.ID_propietario = cliente.ID;
+            ahorros.Cuenta_monto = monto;
+
+
+            auth.Cahorros(cliente);
+        }
     }
 }

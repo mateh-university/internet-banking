@@ -2027,6 +2027,8 @@
     <Content Include="Views\Shared\Master.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Cliente\Index.cshtml" />
+    <Content Include="Views\Admin\Clientes.cshtml" />
+    <Content Include="Views\Cliente\Cahorros.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Entidades\Entidades.csproj">
