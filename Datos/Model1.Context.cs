@@ -14,7 +14,7 @@ namespace Datos
     using System.Data.Entity.Infrastructure;
     using System.Data.Entity.Core.Objects;
     using System.Linq;
-    
+    using Entidades;
     public partial class DBProEntities6 : DbContext
     {
         public DBProEntities6()
