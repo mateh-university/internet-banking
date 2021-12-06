@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Negocio;
-
+using Entidades;
 
 namespace Usuario.Controllers
 {
@@ -14,9 +14,9 @@ namespace Usuario.Controllers
         Negousuario cli = new Negousuario();
 
         // GET: Cliente
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
-            return View();
+            return View(id);
         }
 
         public ActionResult Cahorros()
@@ -24,11 +24,13 @@ namespace Usuario.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult Cahorros(string id ,int monto)
-        {
 
+
+        public ActionResult Balance(int id)
+        {
+            var Cuentas = cli.Consultar_Balance(id);
             return View();
         }
+    
     }
 }

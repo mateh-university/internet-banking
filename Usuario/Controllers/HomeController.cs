@@ -27,7 +27,8 @@ namespace Usuario.Controllers
             if (user != null)
             { 
                 ViewBag.Message =  user.Tipo;
-                return RedirectToAction("Index", user.Tipo == "admin" ? "Admin" : "Cliente");
+ 
+                return RedirectToAction("Index", user.Tipo == "admin" ? "Admin" : "Cliente",new {id = user.ID_user });
             }
 
             else

@@ -2032,6 +2032,7 @@
     <Content Include="Views\Admin\Cuentas.cshtml" />
     <Content Include="Views\Admin\Tarjetas.cshtml" />
     <Content Include="Views\Admin\Prestamos.cshtml" />
+    <Content Include="Views\Cliente\Balance.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Entidades\Entidades.csproj">

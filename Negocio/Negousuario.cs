@@ -71,5 +71,10 @@ namespace Negocio
             return auth.MostrarPrestamos();
         }
 
+        public int Consultar_Balance(int id)
+        {
+            return auth.Consultar_Balance(id);
+        }
+
     }
 }

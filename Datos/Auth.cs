@@ -75,9 +75,10 @@ namespace Datos
             return db.Prestamo.ToList();
         }
 
-        public int Consultar_Balance(Cliente cliente)
+        public int Consultar_Balance(int id)
         {
-            return db.ConsultaCahorros(cliente);
+            
+            return (int)db.ConsultaCahorros(id).FirstOrDefault();
         }
 
 

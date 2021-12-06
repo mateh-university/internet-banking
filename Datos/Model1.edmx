@@ -204,8 +204,7 @@
           <Parameter Name="Cantidad" Type="int" Mode="In" />
         </Function>
         <Function Name="ConsultaCahorros" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Usuario" Type="varchar" Mode="In" />
-          <Parameter Name="fecha_digitadad" Type="datetime" Mode="In" />
+          <Parameter Name="idCliente" Type="int" Mode="In" />
         </Function>
         <Function Name="ConsultaPrestamo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Usuario" Type="varchar" Mode="In" />
@@ -425,8 +424,7 @@
             <Parameter Name="Cantidad" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ConsultaCahorros" ReturnType="Collection(Int32)">
-            <Parameter Name="Usuario" Mode="In" Type="String" />
-            <Parameter Name="fecha_digitadad" Mode="In" Type="DateTime" />
+          <Parameter Name="idCliente" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ConsultaPrestamo" ReturnType="Collection(Int32)">
           <Parameter Name="Usuario" Mode="In" Type="String" />

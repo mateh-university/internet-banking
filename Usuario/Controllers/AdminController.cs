@@ -10,9 +10,9 @@ namespace Usuario.Controllers
     {
         // GET: Admin
         Negousuario negocio = new Negousuario();
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
-            return View();
+            return View(id);
         }
 
         public ActionResult Clientes()

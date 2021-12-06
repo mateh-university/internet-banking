@@ -14,7 +14,6 @@ namespace Datos
     using System.Data.Entity.Infrastructure;
     using System.Data.Entity.Core.Objects;
     using System.Linq;
-    using Entidades;
     
     public partial class DBProEntities6 : DbContext
     {
@@ -52,17 +51,13 @@ namespace Datos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AvanceTarjeta", usuarioParameter, cantidadParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> ConsultaCahorros(string usuario, Nullable<System.DateTime> fecha_digitadad)
+        public virtual ObjectResult<Nullable<int>> ConsultaCahorros(Nullable<int> idCliente)
         {
-            var usuarioParameter = usuario != null ?
-                new ObjectParameter("Usuario", usuario) :
-                new ObjectParameter("Usuario", typeof(string));
+            var idClienteParameter = idCliente.HasValue ?
+                new ObjectParameter("idCliente", idCliente) :
+                new ObjectParameter("idCliente", typeof(int));
     
-            var fecha_digitadadParameter = fecha_digitadad.HasValue ?
-                new ObjectParameter("fecha_digitadad", fecha_digitadad) :
-                new ObjectParameter("fecha_digitadad", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("ConsultaCahorros", usuarioParameter, fecha_digitadadParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("ConsultaCahorros", idClienteParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> ConsultaPrestamo(string usuario)
