@@ -19,9 +19,9 @@ namespace Usuario.Controllers
             return View(id);
         }
 
-        public ActionResult Cahorros()
+        public ActionResult Cahorros(int id)
         {
-            return View();
+            return View(id);
         }
 
 
@@ -29,7 +29,7 @@ namespace Usuario.Controllers
         public ActionResult Balance(int id)
         {
             var Cuentas = cli.Consultar_Balance(id);
-            return View();
+            return View(Cuentas);
         }
     
     }
