@@ -341,7 +341,6 @@
           <Property Name="ID_propietario" Type="Int32" />
           <Property Name="Cuenta_monto" Type="Int32" />
           <NavigationProperty Name="Cliente" Relationship="DBProModel.FK_Cuenta_Ahorros_Cliente" FromRole="Cuenta_Ahorros" ToRole="Cliente" />
-          <NavigationProperty Name="Registro_Cahorros" Relationship="DBProModel.FK_Cuenta_Ahorros_Registro_Cahorros" FromRole="Cuenta_Ahorros" ToRole="Registro_Cahorros" />
           <NavigationProperty Name="Registro_Cahorros1" Relationship="DBProModel.FK_Registro_Cahorros_Cuenta_Ahorros" FromRole="Cuenta_Ahorros" ToRole="Registro_Cahorros" />
         </EntityType>
         <EntityType Name="Prestamo">
@@ -355,7 +354,6 @@
           <Property Name="Fecha_limiteapagar" Type="DateTime" Precision="3" />
           <Property Name="Cuotas" Type="Int32" />
           <NavigationProperty Name="Cliente" Relationship="DBProModel.FK_Prestamo_Cliente" FromRole="Prestamo" ToRole="Cliente" />
-          <NavigationProperty Name="Registro_Prestamo" Relationship="DBProModel.FK_Registro_Prestamo_Prestamo" FromRole="Prestamo" ToRole="Registro_Prestamo" />
           <NavigationProperty Name="Registro_Prestamo1" Relationship="DBProModel.FK_Registro_Prestamo_Prestamo1" FromRole="Prestamo" ToRole="Registro_Prestamo" />
         </EntityType>
         <EntityType Name="Registro_Cahorros">
@@ -367,7 +365,6 @@
           <Property Name="monto_usado" Type="Int32" />
           <Property Name="Transaccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ID_Cuenta" Type="Int32" />
-          <NavigationProperty Name="Cuenta_Ahorros" Relationship="DBProModel.FK_Cuenta_Ahorros_Registro_Cahorros" FromRole="Registro_Cahorros" ToRole="Cuenta_Ahorros" />
           <NavigationProperty Name="Cuenta_Ahorros1" Relationship="DBProModel.FK_Registro_Cahorros_Cuenta_Ahorros" FromRole="Registro_Cahorros" ToRole="Cuenta_Ahorros" />
         </EntityType>
         <EntityType Name="Registro_Prestamo">
@@ -379,7 +376,6 @@
           <Property Name="monto_usado" Type="Int32" />
           <Property Name="Transaccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ID_Prestamo" Type="Int32" />
-          <NavigationProperty Name="Prestamo" Relationship="DBProModel.FK_Registro_Prestamo_Prestamo" FromRole="Registro_Prestamo" ToRole="Prestamo" />
           <NavigationProperty Name="Prestamo1" Relationship="DBProModel.FK_Registro_Prestamo_Prestamo1" FromRole="Registro_Prestamo" ToRole="Prestamo" />
         </EntityType>
         <EntityType Name="Registro_Tarjeta">
@@ -391,7 +387,6 @@
           <Property Name="monto_usado" Type="Int32" />
           <Property Name="Transaccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ID_tarjeta" Type="Int32" />
-          <NavigationProperty Name="Tarjeta_credito" Relationship="DBProModel.FK_Tarjeta_credito_Registro_Tarjeta" FromRole="Registro_Tarjeta" ToRole="Tarjeta_credito" />
           <NavigationProperty Name="Tarjeta_credito1" Relationship="DBProModel.FK_Registro_Tarjeta_Tarjeta_credito" FromRole="Registro_Tarjeta" ToRole="Tarjeta_credito" />
         </EntityType>
         <EntityType Name="sysdiagrams">
@@ -413,7 +408,6 @@
           <Property Name="Tarjeta_monto" Type="Int32" />
           <Property Name="Fecha_limiteapagar" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Cliente" Relationship="DBProModel.FK_Tarjeta_credito_Cliente" FromRole="Tarjeta_credito" ToRole="Cliente" />
-          <NavigationProperty Name="Registro_Tarjeta" Relationship="DBProModel.FK_Tarjeta_credito_Registro_Tarjeta" FromRole="Tarjeta_credito" ToRole="Registro_Tarjeta" />
           <NavigationProperty Name="Registro_Tarjeta1" Relationship="DBProModel.FK_Registro_Tarjeta_Tarjeta_credito" FromRole="Tarjeta_credito" ToRole="Registro_Tarjeta" />
         </EntityType>
         <EntityContainer Name="DBProEntities6" annotation:LazyLoadingEnabled="true">
@@ -501,18 +495,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_Tarjeta_credito_Cliente" Association="DBProModel.FK_Tarjeta_credito_Cliente">
             <End Role="Cliente" EntitySet="Cliente" />
-            <End Role="Tarjeta_credito" EntitySet="Tarjeta_credito" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Cuenta_Ahorros_Registro_Cahorros" Association="DBProModel.FK_Cuenta_Ahorros_Registro_Cahorros">
-            <End Role="Registro_Cahorros" EntitySet="Registro_Cahorros" />
-            <End Role="Cuenta_Ahorros" EntitySet="Cuenta_Ahorros" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Registro_Prestamo_Prestamo" Association="DBProModel.FK_Registro_Prestamo_Prestamo">
-            <End Role="Prestamo" EntitySet="Prestamo" />
-            <End Role="Registro_Prestamo" EntitySet="Registro_Prestamo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Tarjeta_credito_Registro_Tarjeta" Association="DBProModel.FK_Tarjeta_credito_Registro_Tarjeta">
-            <End Role="Registro_Tarjeta" EntitySet="Registro_Tarjeta" />
             <End Role="Tarjeta_credito" EntitySet="Tarjeta_credito" />
           </AssociationSet>
           <FunctionImport Name="Inicio" ReturnType="Collection(DBProModel.Inicio_Result)">
@@ -612,42 +594,6 @@
             </Principal>
             <Dependent Role="Tarjeta_credito">
               <PropertyRef Name="ID_propietario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Cuenta_Ahorros_Registro_Cahorros">
-          <End Type="DBProModel.Registro_Cahorros" Role="Registro_Cahorros" Multiplicity="1" />
-          <End Type="DBProModel.Cuenta_Ahorros" Role="Cuenta_Ahorros" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Registro_Cahorros">
-              <PropertyRef Name="ID_Registro" />
-            </Principal>
-            <Dependent Role="Cuenta_Ahorros">
-              <PropertyRef Name="ID_cuenta" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Registro_Prestamo_Prestamo">
-          <End Type="DBProModel.Prestamo" Role="Prestamo" Multiplicity="1" />
-          <End Type="DBProModel.Registro_Prestamo" Role="Registro_Prestamo" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Prestamo">
-              <PropertyRef Name="ID_Prestamo" />
-            </Principal>
-            <Dependent Role="Registro_Prestamo">
-              <PropertyRef Name="ID_Registro" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Tarjeta_credito_Registro_Tarjeta">
-          <End Type="DBProModel.Registro_Tarjeta" Role="Registro_Tarjeta" Multiplicity="1" />
-          <End Type="DBProModel.Tarjeta_credito" Role="Tarjeta_credito" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Registro_Tarjeta">
-              <PropertyRef Name="ID_Registro" />
-            </Principal>
-            <Dependent Role="Tarjeta_credito">
-              <PropertyRef Name="ID_Tarjeta" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
