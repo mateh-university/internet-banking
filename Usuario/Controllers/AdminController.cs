@@ -21,11 +21,55 @@ namespace Usuario.Controllers
             return View(lista);
         }
 
-        //[HttpPost]
-        //public ActionResult Clientes()
-        //{
+        [HttpPost]
+        public ActionResult Clientes(string nombre, string correo, string clave, string clave2)
+        {
+            var g = negocio.Crear_cliente(nombre, correo, clave, clave2);
 
-        //    return View();
-        //}
+            if (g == "Agregado")
+            {
+                ViewBag.Message = "El cliente ha sido creada con exito";
+                return View();
+            }
+            else
+            {
+                ViewBag.Message = g;
+                return View();
+            }
+        }
+        [HttpPut]
+        public ActionResult Clientes(int ID, string nombre, string correo, string clave, string clave2)
+        {
+            //var g = negocio.Crear_cliente(nombre, correo, clave, clave2);
+
+            //if (g == "Agregado")
+            //{
+            //    ViewBag.Message = "El cliente ha sido creada con exito";
+            //    return View();
+            //}
+            //else
+            //{
+            //    ViewBag.Message = g;
+                return View();
+            //}
+        }
+
+        [HttpDelete]
+        public ActionResult Clientes(int ID)
+        {
+            //var g = negocio.Crear_cliente(nombre, correo, clave, clave2);
+
+            //if (g == "Agregado")
+            //{
+            //    ViewBag.Message = "El cliente ha sido creada con exito";
+            //    return View();
+            //}
+            //else
+            //{
+              //  ViewBag.Message = g;
+               return View();
+            //}
+        }
     }
+
 }
