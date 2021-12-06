@@ -21,5 +21,6 @@ namespace Entidades
         public Nullable<int> ID_Prestamo { get; set; }
     
         public virtual Prestamo Prestamo { get; set; }
+        public virtual Prestamo Prestamo1 { get; set; }
     }
 }

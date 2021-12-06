@@ -21,5 +21,6 @@ namespace Entidades
         public Nullable<int> ID_tarjeta { get; set; }
     
         public virtual Tarjeta_credito Tarjeta_credito { get; set; }
+        public virtual Tarjeta_credito Tarjeta_credito1 { get; set; }
     }
 }

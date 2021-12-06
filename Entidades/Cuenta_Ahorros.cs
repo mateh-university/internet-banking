@@ -14,11 +14,19 @@ namespace Entidades
     
     public partial class Cuenta_Ahorros
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Cuenta_Ahorros()
+        {
+            this.Registro_Cahorros1 = new HashSet<Registro_Cahorros>();
+        }
+    
         public int ID_cuenta { get; set; }
         public Nullable<int> ID_propietario { get; set; }
         public Nullable<int> Cuenta_monto { get; set; }
     
         public virtual Cliente Cliente { get; set; }
         public virtual Registro_Cahorros Registro_Cahorros { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Registro_Cahorros> Registro_Cahorros1 { get; set; }
     }
 }

@@ -14,6 +14,12 @@ namespace Entidades
     
     public partial class Tarjeta_credito
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Tarjeta_credito()
+        {
+            this.Registro_Tarjeta1 = new HashSet<Registro_Tarjeta>();
+        }
+    
         public int ID_Tarjeta { get; set; }
         public Nullable<int> ID_propietario { get; set; }
         public Nullable<int> Tarjeta_monto { get; set; }
@@ -21,5 +27,7 @@ namespace Entidades
     
         public virtual Cliente Cliente { get; set; }
         public virtual Registro_Tarjeta Registro_Tarjeta { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Registro_Tarjeta> Registro_Tarjeta1 { get; set; }
     }
 }

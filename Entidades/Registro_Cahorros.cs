@@ -21,5 +21,6 @@ namespace Entidades
         public Nullable<int> ID_Cuenta { get; set; }
     
         public virtual Cuenta_Ahorros Cuenta_Ahorros { get; set; }
+        public virtual Cuenta_Ahorros Cuenta_Ahorros1 { get; set; }
     }
 }

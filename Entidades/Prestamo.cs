@@ -14,6 +14,12 @@ namespace Entidades
     
     public partial class Prestamo
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Prestamo()
+        {
+            this.Registro_Prestamo1 = new HashSet<Registro_Prestamo>();
+        }
+    
         public int ID_Prestamo { get; set; }
         public Nullable<int> ID_propietario { get; set; }
         public Nullable<int> Monto_inicial { get; set; }
@@ -23,5 +29,7 @@ namespace Entidades
     
         public virtual Cliente Cliente { get; set; }
         public virtual Registro_Prestamo Registro_Prestamo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Registro_Prestamo> Registro_Prestamo1 { get; set; }
     }
 }
