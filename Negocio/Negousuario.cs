@@ -12,8 +12,6 @@ namespace Negocio
     {
 
         Auth auth = new Auth();
-        OP obj = new OP();
-
         public Inicio_Result validar(string correo, string clave)
         {
             return auth.IniciarSesion(correo, clave);
@@ -71,11 +69,36 @@ namespace Negocio
             return auth.MostrarPrestamos();
         }
 
-        public int Consultar_Balance(int id)
+        public List<ConsultaCahorros_Result> Consultar_Balance(int id)
         {
-            return auth.Consultar_Balance(id);
+            return auth.Consultar_Balance(id).ToList();
         }
 
+        public List<ConsultaTarjeta_Result> Consultar_Tarjeta(int id)
+        {
+            return auth.Consultar_Tarjeta(id).ToList();
+        }
+        public List<ConsultaPrestamo_Result> Consultar_Prestamo(int id)
+        {
+            return auth.Consultar_Prestamo(id).ToList();
+        }
+
+        public int Retirocahorros(int id, int monto)
+        {
+            return auth.Retirocahorros(id, monto);
+        }
+        public int AvanceTarjeta(int id, int monto)
+        {
+            return auth.AvanceTarjeta(id, monto);
+        }
+        public int Pagotarjeta(int id, int monto)
+        {
+            return auth.Pagotarjeta(id, monto);
+        }
+        public int PagoPrestamo(int id, int monto)
+        {
+            return auth.PagoPrestamo(id, monto);
+        }
         public void EditCliente(Cliente c)
         {
             auth.EditCliente(c);

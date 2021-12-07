@@ -1,0 +1,52 @@
+﻿@model List<Entidades.ConsultaTarjeta_Result>
+@{
+    ViewBag.Title = "Tarjeta";
+    Layout = "~/Views/Shared/Master.cshtml";
+}
+
+<h2>Tarjetas</h2>
+
+
+@foreach (var Cuenta in Model)
+{
+    <div class="col-xl-6 col-md-6 mb-4">
+        <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            ID Cuenta: @Cuenta.ID_Tarjeta
+                        </div>
+                        <div>
+                            Monto:
+                            <span class="h5 mb-0 font-weight-bold text-gray-800">
+
+                                $@Cuenta.Tarjeta_monto
+
+                            </span>
+
+                        </div>
+                        <div>
+                            Fecha Limite:
+                            <span class="h5 mb-0 font-weight-bold text-gray-800">
+
+                                @Cuenta.Fecha_limiteapagar.Value.Date
+
+                            </span>
+                        </div>
+                    </div>
+                    <div>
+                        @Html.ActionLink("Avance de Tarjeta", "AvanceTarjeta", new { id = Cuenta.ID_Tarjeta })
+                    </div>
+                    <hr />
+                    <div>
+                        @Html.ActionLink("Pagar Tarjeta", "PagoTarjeta", new { id = Cuenta.ID_Tarjeta })
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -2144,6 +2144,12 @@
     <Content Include="Views\Admin\Tarjetas.cshtml" />
     <Content Include="Views\Admin\Prestamos.cshtml" />
     <Content Include="Views\Cliente\Balance.cshtml" />
+    <Content Include="Views\Cliente\Tarjeta.cshtml" />
+    <Content Include="Views\Cliente\Prestamo.cshtml" />
+    <Content Include="Views\Cliente\Retitocuenta.cshtml" />
+    <Content Include="Views\Cliente\AvanceTarjeta.cshtml" />
+    <Content Include="Views\Cliente\PagoTarjeta.cshtml" />
+    <Content Include="Views\Cliente\PagoPrestamo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Entidades\Entidades.csproj">

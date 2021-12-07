@@ -10,16 +10,10 @@
 namespace Entidades
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Registro_Cahorros
+    public partial class ConsultaCahorros_Result
     {
-        public int ID_Registro { get; set; }
-        public Nullable<System.DateTime> Fecha_uso { get; set; }
-        public Nullable<int> monto_usado { get; set; }
-        public string Transaccion { get; set; }
-        public Nullable<int> ID_Cuenta { get; set; }
-    
-        public virtual Cuenta_Ahorros Cuenta_Ahorros { get; set; }
+        public int Cuenta { get; set; }
+        public Nullable<int> Monto { get; set; }
     }
 }

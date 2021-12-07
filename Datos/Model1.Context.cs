@@ -16,10 +16,10 @@ namespace Datos
     using System.Linq;
     using Entidades;
     
-    public partial class DBProEntities6 : DbContext
+    public partial class DBProEntities1 : DbContext
     {
-        public DBProEntities6()
-            : base("name=DBProEntities6")
+        public DBProEntities1()
+            : base("name=DBProEntities1")
         {
         }
     
@@ -52,31 +52,44 @@ namespace Datos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AvanceTarjeta", usuarioParameter, cantidadParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> ConsultaCahorros(Nullable<int> idCliente)
+        public virtual ObjectResult<ConsultaCahorros_Result> ConsultaCahorros(Nullable<int> idCliente)
         {
             var idClienteParameter = idCliente.HasValue ?
                 new ObjectParameter("idCliente", idCliente) :
                 new ObjectParameter("idCliente", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("ConsultaCahorros", idClienteParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ConsultaCahorros_Result>("ConsultaCahorros", idClienteParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> ConsultaPrestamo(Nullable<int> idCliente)
+        public virtual ObjectResult<ConsultaPrestamo_Result> ConsultaPrestamo(Nullable<int> idCliente)
         {
             var idClienteParameter = idCliente.HasValue ?
                 new ObjectParameter("idCliente", idCliente) :
                 new ObjectParameter("idCliente", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("ConsultaPrestamo", idClienteParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ConsultaPrestamo_Result>("ConsultaPrestamo", idClienteParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> ConsultaTarjeta(Nullable<int> idCliente)
+        public virtual ObjectResult<ConsultaTarjeta_Result> ConsultaTarjeta(Nullable<int> idCliente)
         {
             var idClienteParameter = idCliente.HasValue ?
                 new ObjectParameter("idCliente", idCliente) :
                 new ObjectParameter("idCliente", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("ConsultaTarjeta", idClienteParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ConsultaTarjeta_Result>("ConsultaTarjeta", idClienteParameter);
+        }
+    
+        public virtual ObjectResult<Inicio_Result> Inicio(string correo, string passw)
+        {
+            var correoParameter = correo != null ?
+                new ObjectParameter("Correo", correo) :
+                new ObjectParameter("Correo", typeof(string));
+    
+            var passwParameter = passw != null ?
+                new ObjectParameter("Passw", passw) :
+                new ObjectParameter("Passw", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Inicio_Result>("Inicio", correoParameter, passwParameter);
         }
     
         public virtual int PagoPrestamo(Nullable<int> id_prestamo, Nullable<int> cuota)
@@ -219,19 +232,6 @@ namespace Datos
         public virtual int sp_upgraddiagrams()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
-        }
-    
-        public virtual ObjectResult<Inicio_Result> Inicio(string correo, string passw)
-        {
-            var correoParameter = correo != null ?
-                new ObjectParameter("Correo", correo) :
-                new ObjectParameter("Correo", typeof(string));
-    
-            var passwParameter = passw != null ?
-                new ObjectParameter("Passw", passw) :
-                new ObjectParameter("Passw", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Inicio_Result>("Inicio", correoParameter, passwParameter);
         }
     }
 }

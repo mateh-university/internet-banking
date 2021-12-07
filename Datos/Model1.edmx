@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="DBProModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="DBProModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="administrador">
           <Key>
             <PropertyRef Name="ID" />
@@ -303,7 +303,8 @@
             <End Role="Tarjeta_credito" EntitySet="Tarjeta_credito" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DBProModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -316,7 +317,7 @@
           <Property Name="Correo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Passw" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="ID_user" Type="Int32" />
-          <NavigationProperty Name="Usuario" Relationship="DBProModel.FK_administrador_Usuario" FromRole="administrador" ToRole="Usuario" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_administrador_Usuario" FromRole="administrador" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Cliente">
           <Key>
@@ -327,10 +328,10 @@
           <Property Name="Correo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Passw" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="ID_user" Type="Int32" />
-          <NavigationProperty Name="Usuario" Relationship="DBProModel.FK_Cliente_Usuario" FromRole="Cliente" ToRole="Usuario" />
-          <NavigationProperty Name="Cuenta_Ahorros" Relationship="DBProModel.FK_Cuenta_Ahorros_Cliente" FromRole="Cliente" ToRole="Cuenta_Ahorros" />
-          <NavigationProperty Name="Prestamo" Relationship="DBProModel.FK_Prestamo_Cliente" FromRole="Cliente" ToRole="Prestamo" />
-          <NavigationProperty Name="Tarjeta_credito" Relationship="DBProModel.FK_Tarjeta_credito_Cliente" FromRole="Cliente" ToRole="Tarjeta_credito" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Cliente_Usuario" FromRole="Cliente" ToRole="Usuario" />
+          <NavigationProperty Name="Cuenta_Ahorros" Relationship="Self.FK_Cuenta_Ahorros_Cliente" FromRole="Cliente" ToRole="Cuenta_Ahorros" />
+          <NavigationProperty Name="Prestamo" Relationship="Self.FK_Prestamo_Cliente" FromRole="Cliente" ToRole="Prestamo" />
+          <NavigationProperty Name="Tarjeta_credito" Relationship="Self.FK_Tarjeta_credito_Cliente" FromRole="Cliente" ToRole="Tarjeta_credito" />
         </EntityType>
         <EntityType Name="Cuenta_Ahorros">
           <Key>
@@ -339,8 +340,8 @@
           <Property Name="ID_cuenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ID_propietario" Type="Int32" />
           <Property Name="Cuenta_monto" Type="Int32" />
-          <NavigationProperty Name="Cliente" Relationship="DBProModel.FK_Cuenta_Ahorros_Cliente" FromRole="Cuenta_Ahorros" ToRole="Cliente" />
-          <NavigationProperty Name="Registro_Cahorros1" Relationship="DBProModel.FK_Registro_Cahorros_Cuenta_Ahorros" FromRole="Cuenta_Ahorros" ToRole="Registro_Cahorros" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_Cuenta_Ahorros_Cliente" FromRole="Cuenta_Ahorros" ToRole="Cliente" />
+          <NavigationProperty Name="Registro_Cahorros" Relationship="Self.FK_Registro_Cahorros_Cuenta_Ahorros" FromRole="Cuenta_Ahorros" ToRole="Registro_Cahorros" />
         </EntityType>
         <EntityType Name="Prestamo">
           <Key>
@@ -352,8 +353,8 @@
           <Property Name="Monto_Prestado" Type="Int32" />
           <Property Name="Fecha_limiteapagar" Type="DateTime" Precision="3" />
           <Property Name="Cuotas" Type="Int32" />
-          <NavigationProperty Name="Cliente" Relationship="DBProModel.FK_Prestamo_Cliente" FromRole="Prestamo" ToRole="Cliente" />
-          <NavigationProperty Name="Registro_Prestamo1" Relationship="DBProModel.FK_Registro_Prestamo_Prestamo1" FromRole="Prestamo" ToRole="Registro_Prestamo" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_Prestamo_Cliente" FromRole="Prestamo" ToRole="Cliente" />
+          <NavigationProperty Name="Registro_Prestamo" Relationship="Self.FK_Registro_Prestamo_Prestamo1" FromRole="Prestamo" ToRole="Registro_Prestamo" />
         </EntityType>
         <EntityType Name="Registro_Cahorros">
           <Key>
@@ -364,7 +365,7 @@
           <Property Name="monto_usado" Type="Int32" />
           <Property Name="Transaccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ID_Cuenta" Type="Int32" />
-          <NavigationProperty Name="Cuenta_Ahorros1" Relationship="DBProModel.FK_Registro_Cahorros_Cuenta_Ahorros" FromRole="Registro_Cahorros" ToRole="Cuenta_Ahorros" />
+          <NavigationProperty Name="Cuenta_Ahorros" Relationship="Self.FK_Registro_Cahorros_Cuenta_Ahorros" FromRole="Registro_Cahorros" ToRole="Cuenta_Ahorros" />
         </EntityType>
         <EntityType Name="Registro_Prestamo">
           <Key>
@@ -375,7 +376,7 @@
           <Property Name="monto_usado" Type="Int32" />
           <Property Name="Transaccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ID_Prestamo" Type="Int32" />
-          <NavigationProperty Name="Prestamo1" Relationship="DBProModel.FK_Registro_Prestamo_Prestamo1" FromRole="Registro_Prestamo" ToRole="Prestamo" />
+          <NavigationProperty Name="Prestamo" Relationship="Self.FK_Registro_Prestamo_Prestamo1" FromRole="Registro_Prestamo" ToRole="Prestamo" />
         </EntityType>
         <EntityType Name="Registro_Tarjeta">
           <Key>
@@ -386,7 +387,7 @@
           <Property Name="monto_usado" Type="Int32" />
           <Property Name="Transaccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ID_tarjeta" Type="Int32" />
-          <NavigationProperty Name="Tarjeta_credito1" Relationship="DBProModel.FK_Registro_Tarjeta_Tarjeta_credito" FromRole="Registro_Tarjeta" ToRole="Tarjeta_credito" />
+          <NavigationProperty Name="Tarjeta_credito" Relationship="Self.FK_Registro_Tarjeta_Tarjeta_credito" FromRole="Registro_Tarjeta" ToRole="Tarjeta_credito" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -406,10 +407,118 @@
           <Property Name="ID_propietario" Type="Int32" />
           <Property Name="Tarjeta_monto" Type="Int32" />
           <Property Name="Fecha_limiteapagar" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Cliente" Relationship="DBProModel.FK_Tarjeta_credito_Cliente" FromRole="Tarjeta_credito" ToRole="Cliente" />
-          <NavigationProperty Name="Registro_Tarjeta1" Relationship="DBProModel.FK_Registro_Tarjeta_Tarjeta_credito" FromRole="Tarjeta_credito" ToRole="Registro_Tarjeta" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_Tarjeta_credito_Cliente" FromRole="Tarjeta_credito" ToRole="Cliente" />
+          <NavigationProperty Name="Registro_Tarjeta" Relationship="Self.FK_Registro_Tarjeta_Tarjeta_credito" FromRole="Tarjeta_credito" ToRole="Registro_Tarjeta" />
         </EntityType>
-        <EntityContainer Name="DBProEntities6" annotation:LazyLoadingEnabled="true">
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Passw" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Tipo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="administrador" Relationship="Self.FK_administrador_Usuario" FromRole="Usuario" ToRole="administrador" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_Cliente_Usuario" FromRole="Usuario" ToRole="Cliente" />
+        </EntityType>
+        <Association Name="FK_administrador_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="administrador" Type="Self.administrador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="administrador">
+              <PropertyRef Name="ID_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cliente_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="ID_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cuenta_Ahorros_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="Cuenta_Ahorros" Type="Self.Cuenta_Ahorros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Cuenta_Ahorros">
+              <PropertyRef Name="ID_propietario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prestamo_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="Prestamo" Type="Self.Prestamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Prestamo">
+              <PropertyRef Name="ID_propietario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tarjeta_credito_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="Tarjeta_credito" Type="Self.Tarjeta_credito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tarjeta_credito">
+              <PropertyRef Name="ID_propietario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Registro_Cahorros_Cuenta_Ahorros">
+          <End Role="Cuenta_Ahorros" Type="Self.Cuenta_Ahorros" Multiplicity="0..1" />
+          <End Role="Registro_Cahorros" Type="Self.Registro_Cahorros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cuenta_Ahorros">
+              <PropertyRef Name="ID_cuenta" />
+            </Principal>
+            <Dependent Role="Registro_Cahorros">
+              <PropertyRef Name="ID_Cuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Registro_Prestamo_Prestamo1">
+          <End Role="Prestamo" Type="Self.Prestamo" Multiplicity="0..1" />
+          <End Role="Registro_Prestamo" Type="Self.Registro_Prestamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prestamo">
+              <PropertyRef Name="ID_Prestamo" />
+            </Principal>
+            <Dependent Role="Registro_Prestamo">
+              <PropertyRef Name="ID_Prestamo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Registro_Tarjeta_Tarjeta_credito">
+          <End Role="Tarjeta_credito" Type="Self.Tarjeta_credito" Multiplicity="0..1" />
+          <End Role="Registro_Tarjeta" Type="Self.Registro_Tarjeta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tarjeta_credito">
+              <PropertyRef Name="ID_Tarjeta" />
+            </Principal>
+            <Dependent Role="Registro_Tarjeta">
+              <PropertyRef Name="ID_tarjeta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBProEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="administrador" EntityType="Self.administrador" />
           <EntitySet Name="Cliente" EntityType="Self.Cliente" />
           <EntitySet Name="Cuenta_Ahorros" EntityType="Self.Cuenta_Ahorros" />
@@ -419,18 +528,55 @@
           <EntitySet Name="Registro_Tarjeta" EntityType="Self.Registro_Tarjeta" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Tarjeta_credito" EntityType="Self.Tarjeta_credito" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <AssociationSet Name="FK_administrador_Usuario" Association="Self.FK_administrador_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="administrador" EntitySet="administrador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cliente_Usuario" Association="Self.FK_Cliente_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cuenta_Ahorros_Cliente" Association="Self.FK_Cuenta_Ahorros_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Cuenta_Ahorros" EntitySet="Cuenta_Ahorros" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prestamo_Cliente" Association="Self.FK_Prestamo_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Prestamo" EntitySet="Prestamo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tarjeta_credito_Cliente" Association="Self.FK_Tarjeta_credito_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Tarjeta_credito" EntitySet="Tarjeta_credito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Registro_Cahorros_Cuenta_Ahorros" Association="Self.FK_Registro_Cahorros_Cuenta_Ahorros">
+            <End Role="Cuenta_Ahorros" EntitySet="Cuenta_Ahorros" />
+            <End Role="Registro_Cahorros" EntitySet="Registro_Cahorros" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Registro_Prestamo_Prestamo1" Association="Self.FK_Registro_Prestamo_Prestamo1">
+            <End Role="Prestamo" EntitySet="Prestamo" />
+            <End Role="Registro_Prestamo" EntitySet="Registro_Prestamo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Registro_Tarjeta_Tarjeta_credito" Association="Self.FK_Registro_Tarjeta_Tarjeta_credito">
+            <End Role="Tarjeta_credito" EntitySet="Tarjeta_credito" />
+            <End Role="Registro_Tarjeta" EntitySet="Registro_Tarjeta" />
+          </AssociationSet>
           <FunctionImport Name="AvanceTarjeta">
             <Parameter Name="Usuario" Mode="In" Type="Int32" />
             <Parameter Name="Cantidad" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="ConsultaCahorros" ReturnType="Collection(Int32)">
-          <Parameter Name="idCliente" Mode="In" Type="Int32" />
+          <FunctionImport Name="ConsultaCahorros" ReturnType="Collection(DBProModel.ConsultaCahorros_Result)">
+            <Parameter Name="idCliente" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="ConsultaPrestamo" ReturnType="Collection(Int32)">
-          <Parameter Name="idCliente" Mode="In" Type="Int32" />
+          <FunctionImport Name="ConsultaPrestamo" ReturnType="Collection(DBProModel.ConsultaPrestamo_Result)">
+            <Parameter Name="idCliente" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="ConsultaTarjeta" ReturnType="Collection(Int32)">
-          <Parameter Name="idCliente" Mode="In" Type="Int32" />
+          <FunctionImport Name="ConsultaTarjeta" ReturnType="Collection(DBProModel.ConsultaTarjeta_Result)">
+            <Parameter Name="idCliente" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Inicio" ReturnType="Collection(DBProModel.Inicio_Result)">
+            <Parameter Name="Correo" Mode="In" Type="String" />
+            <Parameter Name="Passw" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="PagoPrestamo">
             <Parameter Name="id_prestamo" Mode="In" Type="Int32" />
@@ -474,44 +620,31 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
-          <EntitySet Name="Usuario" EntityType="DBProModel.Usuario" />
-          <AssociationSet Name="FK_administrador_Usuario" Association="DBProModel.FK_administrador_Usuario">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="administrador" EntitySet="administrador" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Cliente_Usuario" Association="DBProModel.FK_Cliente_Usuario">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Cliente" EntitySet="Cliente" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Cuenta_Ahorros_Cliente" Association="DBProModel.FK_Cuenta_Ahorros_Cliente">
-            <End Role="Cliente" EntitySet="Cliente" />
-            <End Role="Cuenta_Ahorros" EntitySet="Cuenta_Ahorros" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Prestamo_Cliente" Association="DBProModel.FK_Prestamo_Cliente">
-            <End Role="Cliente" EntitySet="Cliente" />
-            <End Role="Prestamo" EntitySet="Prestamo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Tarjeta_credito_Cliente" Association="DBProModel.FK_Tarjeta_credito_Cliente">
-            <End Role="Cliente" EntitySet="Cliente" />
-            <End Role="Tarjeta_credito" EntitySet="Tarjeta_credito" />
-          </AssociationSet>
-          <FunctionImport Name="Inicio" ReturnType="Collection(DBProModel.Inicio_Result)">
-            <Parameter Name="Correo" Mode="In" Type="String" />
-            <Parameter Name="Passw" Mode="In" Type="String" />
-          </FunctionImport>
-          <AssociationSet Name="FK_Registro_Cahorros_Cuenta_Ahorros" Association="DBProModel.FK_Registro_Cahorros_Cuenta_Ahorros">
-            <End Role="Cuenta_Ahorros" EntitySet="Cuenta_Ahorros" />
-            <End Role="Registro_Cahorros" EntitySet="Registro_Cahorros" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Registro_Prestamo_Prestamo1" Association="DBProModel.FK_Registro_Prestamo_Prestamo1">
-            <End Role="Prestamo" EntitySet="Prestamo" />
-            <End Role="Registro_Prestamo" EntitySet="Registro_Prestamo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Registro_Tarjeta_Tarjeta_credito" Association="DBProModel.FK_Registro_Tarjeta_Tarjeta_credito">
-            <End Role="Tarjeta_credito" EntitySet="Tarjeta_credito" />
-            <End Role="Registro_Tarjeta" EntitySet="Registro_Tarjeta" />
-          </AssociationSet>
         </EntityContainer>
+        <ComplexType Name="ConsultaCahorros_Result">
+          <Property Type="Int32" Name="Cuenta" Nullable="false" />
+          <Property Type="Int32" Name="Monto" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="ConsultaPrestamo_Result">
+          <Property Type="Int32" Name="ID_Prestamo" Nullable="false" />
+          <Property Type="Int32" Name="Monto_inicial" Nullable="true" />
+          <Property Type="Int32" Name="Monto_Prestado" Nullable="true" />
+          <Property Type="DateTime" Name="Fecha_limiteapagar" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="Cuotas" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="ConsultaTarjeta_Result">
+          <Property Type="Int32" Name="ID_Tarjeta" Nullable="false" />
+          <Property Type="Int32" Name="Tarjeta_monto" Nullable="true" />
+          <Property Type="DateTime" Name="Fecha_limiteapagar" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="Inicio_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Correo" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Passw" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="ID_user" Nullable="true" />
+          <Property Type="String" Name="Tipo" Nullable="true" MaxLength="10" />
+        </ComplexType>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
           <Property Type="Binary" Name="definition" Nullable="true" />
@@ -523,147 +656,31 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
-        <EntityType Name="Usuario">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Correo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Passw" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Tipo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="administrador" Relationship="DBProModel.FK_administrador_Usuario" FromRole="Usuario" ToRole="administrador" />
-          <NavigationProperty Name="Cliente" Relationship="DBProModel.FK_Cliente_Usuario" FromRole="Usuario" ToRole="Cliente" />
-        </EntityType>
-        <Association Name="FK_administrador_Usuario">
-          <End Type="DBProModel.Usuario" Role="Usuario" Multiplicity="0..1" />
-          <End Type="DBProModel.administrador" Role="administrador" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="administrador">
-              <PropertyRef Name="ID_user" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Cliente_Usuario">
-          <End Type="DBProModel.Usuario" Role="Usuario" Multiplicity="0..1" />
-          <End Type="DBProModel.Cliente" Role="Cliente" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Cliente">
-              <PropertyRef Name="ID_user" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Cuenta_Ahorros_Cliente">
-          <End Type="DBProModel.Cliente" Role="Cliente" Multiplicity="0..1" />
-          <End Type="DBProModel.Cuenta_Ahorros" Role="Cuenta_Ahorros" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cliente">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Cuenta_Ahorros">
-              <PropertyRef Name="ID_propietario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Prestamo_Cliente">
-          <End Type="DBProModel.Cliente" Role="Cliente" Multiplicity="0..1" />
-          <End Type="DBProModel.Prestamo" Role="Prestamo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cliente">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Prestamo">
-              <PropertyRef Name="ID_propietario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Tarjeta_credito_Cliente">
-          <End Type="DBProModel.Cliente" Role="Cliente" Multiplicity="0..1" />
-          <End Type="DBProModel.Tarjeta_credito" Role="Tarjeta_credito" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cliente">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Tarjeta_credito">
-              <PropertyRef Name="ID_propietario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <ComplexType Name="Inicio_Result">
-          <Property Type="Int32" Name="ID" Nullable="false" />
-          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="255" />
-          <Property Type="String" Name="Correo" Nullable="true" MaxLength="255" />
-          <Property Type="String" Name="Passw" Nullable="true" MaxLength="255" />
-          <Property Type="Int32" Name="ID_user" Nullable="true" />
-          <Property Type="String" Name="Tipo" Nullable="true" MaxLength="10" />
-        </ComplexType>
-        <Association Name="FK_Registro_Cahorros_Cuenta_Ahorros">
-          <End Type="DBProModel.Cuenta_Ahorros" Role="Cuenta_Ahorros" Multiplicity="0..1" />
-          <End Type="DBProModel.Registro_Cahorros" Role="Registro_Cahorros" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cuenta_Ahorros">
-              <PropertyRef Name="ID_cuenta" />
-            </Principal>
-            <Dependent Role="Registro_Cahorros">
-              <PropertyRef Name="ID_Cuenta" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Registro_Prestamo_Prestamo1">
-          <End Type="DBProModel.Prestamo" Role="Prestamo" Multiplicity="0..1" />
-          <End Type="DBProModel.Registro_Prestamo" Role="Registro_Prestamo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Prestamo">
-              <PropertyRef Name="ID_Prestamo" />
-            </Principal>
-            <Dependent Role="Registro_Prestamo">
-              <PropertyRef Name="ID_Prestamo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Registro_Tarjeta_Tarjeta_credito">
-          <End Type="DBProModel.Tarjeta_credito" Role="Tarjeta_credito" Multiplicity="0..1" />
-          <End Type="DBProModel.Registro_Tarjeta" Role="Registro_Tarjeta" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tarjeta_credito">
-              <PropertyRef Name="ID_Tarjeta" />
-            </Principal>
-            <Dependent Role="Registro_Tarjeta">
-              <PropertyRef Name="ID_tarjeta" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DBProModelStoreContainer" CdmEntityContainer="DBProEntities6">
+        <EntityContainerMapping StorageEntityContainer="DBProModelStoreContainer" CdmEntityContainer="DBProEntities1">
           <EntitySetMapping Name="administrador">
             <EntityTypeMapping TypeName="DBProModel.administrador">
               <MappingFragment StoreEntitySet="administrador">
-                <ScalarProperty Name="ID_user" ColumnName="ID_user" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Correo" ColumnName="Correo" />
                 <ScalarProperty Name="Passw" ColumnName="Passw" />
+                <ScalarProperty Name="ID_user" ColumnName="ID_user" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Cliente">
             <EntityTypeMapping TypeName="DBProModel.Cliente">
               <MappingFragment StoreEntitySet="Cliente">
-                <ScalarProperty Name="ID_user" ColumnName="ID_user" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Correo" ColumnName="Correo" />
                 <ScalarProperty Name="Passw" ColumnName="Passw" />
+                <ScalarProperty Name="ID_user" ColumnName="ID_user" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -742,10 +759,58 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="DBProModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Passw" ColumnName="Passw" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="AvanceTarjeta" FunctionName="DBProModel.Store.AvanceTarjeta" />
-          <FunctionImportMapping FunctionImportName="ConsultaCahorros" FunctionName="DBProModel.Store.ConsultaCahorros" />
-          <FunctionImportMapping FunctionImportName="ConsultaPrestamo" FunctionName="DBProModel.Store.ConsultaPrestamo" />
-          <FunctionImportMapping FunctionImportName="ConsultaTarjeta" FunctionName="DBProModel.Store.ConsultaTarjeta" />
+          <FunctionImportMapping FunctionImportName="ConsultaCahorros" FunctionName="DBProModel.Store.ConsultaCahorros">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBProModel.ConsultaCahorros_Result">
+                <ScalarProperty Name="Cuenta" ColumnName="Cuenta" />
+                <ScalarProperty Name="Monto" ColumnName="Monto" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ConsultaPrestamo" FunctionName="DBProModel.Store.ConsultaPrestamo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBProModel.ConsultaPrestamo_Result">
+                <ScalarProperty Name="ID_Prestamo" ColumnName="ID_Prestamo" />
+                <ScalarProperty Name="Monto_inicial" ColumnName="Monto_inicial" />
+                <ScalarProperty Name="Monto_Prestado" ColumnName="Monto_Prestado" />
+                <ScalarProperty Name="Fecha_limiteapagar" ColumnName="Fecha_limiteapagar" />
+                <ScalarProperty Name="Cuotas" ColumnName="Cuotas" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ConsultaTarjeta" FunctionName="DBProModel.Store.ConsultaTarjeta">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBProModel.ConsultaTarjeta_Result">
+                <ScalarProperty Name="ID_Tarjeta" ColumnName="ID_Tarjeta" />
+                <ScalarProperty Name="Tarjeta_monto" ColumnName="Tarjeta_monto" />
+                <ScalarProperty Name="Fecha_limiteapagar" ColumnName="Fecha_limiteapagar" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Inicio" FunctionName="DBProModel.Store.Inicio">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBProModel.Inicio_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Passw" ColumnName="Passw" />
+                <ScalarProperty Name="ID_user" ColumnName="ID_user" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="PagoPrestamo" FunctionName="DBProModel.Store.PagoPrestamo" />
           <FunctionImportMapping FunctionImportName="PagoTarjeta" FunctionName="DBProModel.Store.PagoTarjeta" />
           <FunctionImportMapping FunctionImportName="RetiroCahorros" FunctionName="DBProModel.Store.RetiroCahorros" />
@@ -773,29 +838,6 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="DBProModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="DBProModel.Store.sp_upgraddiagrams" />
-          <EntitySetMapping Name="Usuario">
-            <EntityTypeMapping TypeName="DBProModel.Usuario">
-              <MappingFragment StoreEntitySet="Usuario">
-                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
-                <ScalarProperty Name="Passw" ColumnName="Passw" />
-                <ScalarProperty Name="Correo" ColumnName="Correo" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="Inicio" FunctionName="DBProModel.Store.Inicio">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="DBProModel.Inicio_Result">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Correo" ColumnName="Correo" />
-                <ScalarProperty Name="Passw" ColumnName="Passw" />
-                <ScalarProperty Name="ID_user" ColumnName="ID_user" />
-                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
