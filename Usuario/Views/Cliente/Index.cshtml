@@ -13,7 +13,7 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                             
-                            @Html.ActionLink("Cuenta de Ahorros", "Cahorros", new { id = Model });
+                            @Html.ActionLink("Cuentas de ahorro", "Balance", new { id = Model });
 
                         </div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
@@ -31,9 +31,7 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                            <a>
-                                Tarjeta Credito
-                            </a>
+                                @Html.ActionLink("Tarjetas de Credito", "Tarjeta", new { id = Model });
                         </div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
                     </div>
@@ -50,9 +48,7 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                            <a>
-                                Prestamo
-                            </a>
+                                @Html.ActionLink("Prestamos", "Prestamo", new { id = Model });
                         </div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
                     </div>

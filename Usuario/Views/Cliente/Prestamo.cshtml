@@ -1,0 +1,62 @@
+﻿@model List<Entidades.ConsultaPrestamo_Result>
+@{
+    ViewBag.Title = "Prestamo";
+    Layout = "~/Views/Shared/Master.cshtml";
+}
+
+<h2>Prestamo</h2>
+
+
+@foreach (var Cuenta in Model)
+{
+    <div class="col-xl-6 col-md-6 mb-4">
+        <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            ID Cuenta: @Cuenta.ID_Prestamo
+                        </div>
+                        <div>
+                            Monto Disponible:
+                            <span class="h5 mb-0 font-weight-bold text-gray-800">
+
+                                $@Cuenta.Monto_Prestado
+
+                            </span>
+
+                        </div>
+                        Monto Prestado:
+                        <span class="h5 mb-0 font-weight-bold text-gray-800">
+
+                            $@Cuenta.Monto_inicial
+
+                        </span>
+                        <div>
+                            Fecha Limite:
+                            <span class="h5 mb-0 font-weight-bold text-gray-800">
+
+                                $@Cuenta.Fecha_limiteapagar.Value.Date
+
+                            </span>
+                        </div>
+                        <div>
+                            Cuotas:
+                            <span class="h5 mb-0 font-weight-bold text-gray-800">
+
+                                $@Cuenta.Cuotas
+
+                            </span>
+                        </div>
+                    </div>
+                    <div>
+                        @Html.ActionLink("Pago Prestamo", "PagoPrestamo", new { id = Cuenta.ID_Prestamo });
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -10,25 +10,13 @@
 namespace Entidades
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Prestamo
+    public partial class ConsultaPrestamo_Result
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Prestamo()
-        {
-            this.Registro_Prestamo = new HashSet<Registro_Prestamo>();
-        }
-    
         public int ID_Prestamo { get; set; }
-        public Nullable<int> ID_propietario { get; set; }
         public Nullable<int> Monto_inicial { get; set; }
         public Nullable<int> Monto_Prestado { get; set; }
         public Nullable<System.DateTime> Fecha_limiteapagar { get; set; }
         public Nullable<int> Cuotas { get; set; }
-    
-        public virtual Cliente Cliente { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Registro_Prestamo> Registro_Prestamo { get; set; }
     }
 }

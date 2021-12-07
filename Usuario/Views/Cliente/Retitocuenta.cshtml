@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "Retitocuenta";
+    Layout = "~/Views/Shared/Master.cshtml";
+}
+
+<h2>Retiro cuenta</h2>
+
+
+<form class="user" method="post">
+    <div class="form-group row">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+            <input name="Cuenta" type="number" class="form-control form-control-user" id="exampleFirstName"
+                   placeholder="Cuenta a Depositar">
+        </div>
+    </div>
+    <div class="form-group">
+        <input name="monto" type="number" class="form-control form-control-user" id="exampleInputEmail"
+               placeholder="Monto a depositar">
+    </div>
+    <button type="submit" class="btn btn-primary btn-user btn-block">Registrar</button>
+
+</form>

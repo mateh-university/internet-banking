@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Entidades.Cuenta_Ahorros>
+﻿@model IEnumerable<Entidades.ConsultaCahorros_Result>
 @{
     ViewBag.Title = "Balance";
     Layout = "~/Views/Shared/Master.cshtml";
@@ -16,9 +16,13 @@
             <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        @Cuenta.ID_cuenta
+                        @Cuenta.Cuenta
                     </div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800">$@Cuenta.Cuenta_monto</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">$@Cuenta.Monto</div>
+                </div>
+                <div>
+                    @Html.ActionLink("Transaccion", "Retitocuenta", new { id = Cuenta.Cuenta });
+
                 </div>
                 <div class="col-auto">
                     <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>

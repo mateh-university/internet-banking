@@ -5,24 +5,25 @@ using System.Text;
 using System.Threading.Tasks;
 using Entidades;
 
+
 namespace Datos
 {
     public class Auth
     {
-        DBProEntities6 db = new DBProEntities6();
+        DBProEntities1 db = new DBProEntities1();
         public Inicio_Result IniciarSesion(String correo, String clave)
         {
-            
+
             return db.Inicio(correo, clave).FirstOrDefault();
         }
 
-        
+
         public Cliente Crear_cliente(Cliente cliente)
         {
-            
+
             var existe = db.Usuario.FirstOrDefault(a => a.Correo == cliente.Correo);
 
-            if(existe == null)
+            if (existe == null)
             {
                 Usuario _usuario = new Usuario();
                 _usuario.Nombre = cliente.Nombre;
@@ -38,21 +39,21 @@ namespace Datos
             }
 
             return null;
-            
+
         }
         public Cuenta_Ahorros Cahorros(Cliente cliente)
         {
             Cuenta_Ahorros ahorros = new Cuenta_Ahorros();
 
             ahorros.ID_propietario = cliente.ID;
-            
+
 
             var x = db.Cuenta_Ahorros.Add(ahorros);
             db.SaveChanges();
 
             return ahorros;
 
- 
+
         }
 
         public List<Cliente> MostrarCliente()
@@ -75,11 +76,41 @@ namespace Datos
             return db.Prestamo.ToList();
         }
 
-        public int Consultar_Balance(int id)
+        public List<ConsultaCahorros_Result> Consultar_Balance(int id)
         {
-            
-            return (int)db.ConsultaCahorros(id).FirstOrDefault();
+
+            return db.ConsultaCahorros(id).ToList();
         }
+
+        public List<ConsultaTarjeta_Result> Consultar_Tarjeta(int id)
+        {
+
+            return db.ConsultaTarjeta(id).ToList();
+        }
+        public List<ConsultaPrestamo_Result> Consultar_Prestamo(int id)
+        {
+
+            return db.ConsultaPrestamo(id).ToList();
+        }
+
+        public int Retirocahorros(int id, int monto)
+        {
+            return db.RetiroCahorros(id, monto);
+        }
+
+        public int AvanceTarjeta(int id, int monto)
+        {
+            return db.AvanceTarjeta(id, monto);
+        }
+        public int Pagotarjeta(int id, int monto)
+        {
+            return db.PagoTarjeta(id, monto);
+        }
+        public int PagoPrestamo(int id, int monto)
+        {
+            return db.PagoPrestamo(id, monto);
+        }
+
 
 
     }
