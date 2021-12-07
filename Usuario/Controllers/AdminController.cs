@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Negocio;
+using Entidades;
+
 namespace Usuario.Controllers
 {
     public class AdminController : Controller
@@ -38,20 +40,16 @@ namespace Usuario.Controllers
             }
         }
         [HttpPut]
-        public ActionResult Clientes(int ID, string nombre, string correo, string clave, string clave2)
+        public ActionResult Clientes(Cliente c)
         {
-            //var g = negocio.Crear_cliente(nombre, correo, clave, clave2);
+            //var c = new Cliente();
+            //c.ID = ID;
+            //c.Nombre = nombre;
+            //c.Correo = correo;
+            //c.Passw = clave;
+             negocio.EditCliente(c);
 
-            //if (g == "Agregado")
-            //{
-            //    ViewBag.Message = "El cliente ha sido creada con exito";
-            //    return View();
-            //}
-            //else
-            //{
-            //    ViewBag.Message = g;
-                return View();
-            //}
+            return RedirectToAction("Clientes");
         }
 
         [HttpDelete]

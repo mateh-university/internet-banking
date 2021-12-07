@@ -207,10 +207,10 @@
           <Parameter Name="idCliente" Type="int" Mode="In" />
         </Function>
         <Function Name="ConsultaPrestamo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Usuario" Type="varchar" Mode="In" />
+          <Parameter Name="idCliente" Type="int" Mode="In" />
         </Function>
         <Function Name="ConsultaTarjeta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Usuario" Type="varchar" Mode="In" />
+          <Parameter Name="idCliente" Type="int" Mode="In" />
         </Function>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="Inicio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -218,15 +218,15 @@
           <Parameter Name="Passw" Type="varchar" Mode="In" />
         </Function>
         <Function Name="PagoPrestamo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Usuario" Type="int" Mode="In" />
+          <Parameter Name="id_prestamo" Type="int" Mode="In" />
           <Parameter Name="Cuota" Type="int" Mode="In" />
         </Function>
         <Function Name="PagoTarjeta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Usuario" Type="int" Mode="In" />
+          <Parameter Name="id_tarjeta" Type="int" Mode="In" />
           <Parameter Name="Cantidad" Type="int" Mode="In" />
         </Function>
         <Function Name="RetiroCahorros" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="UsuarioT" Type="int" Mode="In" />
+          <Parameter Name="id_cuenta" Type="int" Mode="In" />
           <Parameter Name="Cantidad" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -427,21 +427,21 @@
           <Parameter Name="idCliente" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ConsultaPrestamo" ReturnType="Collection(Int32)">
-          <Parameter Name="Usuario" Mode="In" Type="String" />
+          <Parameter Name="idCliente" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ConsultaTarjeta" ReturnType="Collection(Int32)">
-          <Parameter Name="Usuario" Mode="In" Type="String" />
+          <Parameter Name="idCliente" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="PagoPrestamo">
-            <Parameter Name="Usuario" Mode="In" Type="Int32" />
+            <Parameter Name="id_prestamo" Mode="In" Type="Int32" />
             <Parameter Name="Cuota" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="PagoTarjeta">
-            <Parameter Name="Usuario" Mode="In" Type="Int32" />
+            <Parameter Name="id_tarjeta" Mode="In" Type="Int32" />
             <Parameter Name="Cantidad" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="RetiroCahorros">
-            <Parameter Name="UsuarioT" Mode="In" Type="Int32" />
+            <Parameter Name="id_cuenta" Mode="In" Type="Int32" />
             <Parameter Name="Cantidad" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_alterdiagram">

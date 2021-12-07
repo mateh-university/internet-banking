@@ -82,5 +82,16 @@ namespace Datos
         }
 
 
+        public void EditCliente(Cliente c)
+        {
+
+            var cliente = db.Cliente.Where(x => x.ID == c.ID).First<Cliente>();
+            cliente.Nombre = c.Nombre;
+            cliente.Correo = c.Correo;
+            cliente.Passw = c.Correo;
+            db.SaveChanges();
+        }
+
+
     }
 }

@@ -76,5 +76,10 @@ namespace Negocio
             return auth.Consultar_Balance(id);
         }
 
+        public void EditCliente(Cliente c)
+        {
+            auth.EditCliente(c);
+        }
+
     }
 }
